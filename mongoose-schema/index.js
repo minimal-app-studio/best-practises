@@ -18,11 +18,34 @@ const User = new mongoose.model('User', userSchema);
     console.log("after connecting mongoose");
     
 
-     const harish = new User({
+    // creating a user
+     const harish = await User.create({
         name: "harish",
         age: 22,
         address: "1/91/1, East street"
      })
 
-     console.log(harish);
+    // find a user
+
+    const user = await User.findOne({
+        name: "harish"
+    })
+
+
+    // update user
+    const updatedUser = await User.findOneAndUpdate({
+        name: "harish"
+    }, {
+        age: 23
+    })
+
+    console.log(updatedUser);
+
+    // delete a user
+    const deletedUser = await User.deleteOne({
+        name: "harish"
+    })
+
+    console.log(deletedUser)
+
 })();
